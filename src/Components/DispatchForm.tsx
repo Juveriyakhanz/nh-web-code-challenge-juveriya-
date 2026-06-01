@@ -2,6 +2,14 @@ import { useState } from "react";
 import { labData } from "../Data/LabData";
 import { findOptimalClinician } from "../Services/findOptimalClinician";
 import DispatchResult from "./DispatchResult";
+import {
+  Button,
+  Input,
+  Select,
+  FormGroup,
+  Card,
+  ErrorMessage,
+} from "./CommonComponents";
 
 interface Lab {
   name: string;
@@ -56,12 +64,10 @@ export default function DispatchForm() {
   };
 
   return (
-    <div className="dashboard-card">
+    <Card>
       <h2 className="page-title">Clinician Dispatch Dashboard</h2>
-      <div className="form-group">
-        <label className="label">Patient Address</label>
-        <input
-          className="input"
+      <FormGroup label="Patient Address">
+        <Input
           value={patientAddress}
           onChange={(e) => {
             setPatientAddress(e.target.value);
@@ -69,8 +75,8 @@ export default function DispatchForm() {
           }}
           placeholder="Enter patient address"
         />
-        {error && <p className="error-message">{error}</p>}
-      </div>
+        {error && <ErrorMessage message={error} />}
+      </FormGroup>
       <div className="checkbox-row">
         <input
           type="checkbox"
@@ -83,10 +89,8 @@ export default function DispatchForm() {
         <span>Lab Drop-off Required</span>
       </div>
       {includeLab && (
-        <div className="form-group">
-          <label className="label">Select Lab</label>
-          <select
-            className="select"
+        <FormGroup label="Select Lab">
+          <Select
             value={selectedLab?.name || ""}
             onChange={(e) => {
               setSelectedLab(
@@ -101,11 +105,10 @@ export default function DispatchForm() {
                 {lab.name}
               </option>
             ))}
-          </select>
-        </div>
+          </Select>
+        </FormGroup>
       )}
-      <button
-        className="button"
+      <Button
         onClick={handleSubmit}
         disabled={
           loading ||
@@ -115,8 +118,8 @@ export default function DispatchForm() {
         }
       >
         {loading ? "Finding Optimal Clinician..." : "Find Optimal Clinician"}
-      </button>
+      </Button>
       {result && <DispatchResult result={result} />}
-    </div>
+    </Card>
   );
 }
