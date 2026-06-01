@@ -41,11 +41,6 @@ export default function DispatchForm() {
       return;
     }
 
-    if (includeLab && !selectedLab) {
-      setError("Please select a lab");
-      return;
-    }
-
     setError("");
     setLoading(true);
 
@@ -80,6 +75,8 @@ export default function DispatchForm() {
           }}
           placeholder="Enter patient address"
         />
+        {error && <p className="error-message">{error}</p>}
+
       </div>
 
       <div className="checkbox-row">
@@ -92,7 +89,6 @@ export default function DispatchForm() {
             setResult(null);
           }}
         />
-
         <span>Lab Drop-off Required</span>
       </div>
 
@@ -121,8 +117,6 @@ export default function DispatchForm() {
           </select>
         </div>
       )}
-
-      {error && <p className="error-message">{error}</p>}
 
       <button
         className="button"
