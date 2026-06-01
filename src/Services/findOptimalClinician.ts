@@ -1,5 +1,5 @@
 import { cliniciansData } from "../Data/CliniciansData";
-import { getDistance } from "./randomDistanceGenerator";
+import { getDistance } from "./getDistance";
 import { calculateDistanceWithLab } from "./CalculateDistancewithLab";
 
 interface Result {

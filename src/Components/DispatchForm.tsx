@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { labData } from "../Data/LabData";
-import { findOptimalClinician } from "../Services/CalculateDistance";
+import { findOptimalClinician } from "../Services/findOptimalClinician";
 
 interface Lab {
   name: string;

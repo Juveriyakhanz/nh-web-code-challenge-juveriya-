@@ -1,4 +1,4 @@
-import {getDistance} from "./randomDistanceGenerator";
+import {getDistance} from "./getDistance";
 
 export const calculateDistanceWithLab = (clinicianAddress: string, patientAddress: string, selectedLabAddress: string): number => {
     const clinicianToPatient = getDistance(clinicianAddress, patientAddress);
