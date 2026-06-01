@@ -31,12 +31,12 @@ export default function DispatchForm() {
   const addressRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
 
   const handleSubmit = () => {
-    if (!patientAddress.trim()) {
+    if (!patientAddress?.trim()) {
       setError("Patient address is required");
       return;
     }
 
-    if (!addressRegex.test(patientAddress.trim())) {
+    if (!addressRegex?.test(patientAddress?.trim())) {
       setError("Please enter a valid street address (e.g. 123 Main St)");
       return;
     }
@@ -105,7 +105,7 @@ export default function DispatchForm() {
             value={selectedLab?.name || ""}
             onChange={(e) => {
               setSelectedLab(
-                labData.find((lab) => lab.name === e.target.value),
+                labData?.find((lab) => lab.name === e.target.value),
               );
               setSearchCompleted(false);
               setResult(null);
@@ -113,7 +113,7 @@ export default function DispatchForm() {
           >
             <option value="">Select Lab</option>
 
-            {labData.map((lab) => (
+            {labData?.map((lab) => (
               <option key={lab.name} value={lab.name}>
                 {lab.name}
               </option>
@@ -141,9 +141,9 @@ export default function DispatchForm() {
         <>
           <div className="winner-card">
             <h3>Recommended Clinician</h3>
-            <h2>{result.bestClinician.clinician}</h2>
+            <h2>{result?.bestClinician?.clinician}</h2>
             <strong>
-              Distance: {result.bestClinician.distance.toFixed(2)} miles
+              Distance: {result?.bestClinician?.distance?.toFixed(2)} miles
             </strong>
 
             {submittedVisitType && submittedLab && (
@@ -157,7 +157,7 @@ export default function DispatchForm() {
           <div className="rankings-section">
             <h3>Clinician Rankings</h3>
 
-            {result.rankings.map((r, index) => (
+            {result?.rankings?.map((r, index) => (
               <div
                 key={r.clinician}
                 className={`ranking-card ${index < 3 ? "top-rank" : ""}`}

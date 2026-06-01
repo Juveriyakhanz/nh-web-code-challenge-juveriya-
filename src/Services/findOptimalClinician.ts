@@ -17,19 +17,19 @@ export const findOptimalClinician = (
   includeLab: boolean,
   selectedLab?: Lab
 ) => {
-  const results: Result[] = cliniciansData.map((clinician) => {
+  const results: Result[] = cliniciansData?.map((clinician) => {
     let totalDistance = 0;
 
     if (includeLab) {
       totalDistance =
-       calculateDistanceWithLab(clinician.address, patientAddress, selectedLab?.address || "");
+       calculateDistanceWithLab(clinician?.address, patientAddress, selectedLab?.address || "");
     } else {
       totalDistance =
-        getDistance(clinician.address, patientAddress) *2; // Round trip distance
+        getDistance(clinician?.address, patientAddress) *2; // Round trip distance
     }
 
     return {
-      clinician: clinician.name,
+      clinician: clinician?.name,
       distance: totalDistance,
     };
   });
